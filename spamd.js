@@ -59,7 +59,7 @@ var Spamd = (function() {
     };
 
     var connected = function (instance, headers, receiver, sender) {
-        instance.write("SYMBOLS SPAMC/1.3\r\n", function () {
+        instance.write("REPORT SPAMC/1.3\r\n", function () {
             instance.write("User: " + receiver + "\r\n\r\n", function () {
                 instance.write("X-Envelope-From: " + sender + "\r\n", function () {
                     instance.write(headers);
@@ -85,10 +85,13 @@ var Spamd = (function() {
 
     var data = function (line, result) {
         line = line.toString().split('\r\n');
+        console.log(line)
 
         for (var l in line) {
             var matches;
-            if (matches = line[l].match(/Spam: (True|False) ; (-?\d+\.\d) \/ (-?\d+\.\d)/)) {
+            if (line[l].match('Content analysis details:')) {
+                result.report = "Content analysis details:" + line[l].split('Content analysis details:').pop();
+            } else if (matches = line[l].match(/Spam: (True|False) ; (-?\d+\.\d) \/ (-?\d+\.\d)/)) {
 
                 result.spam = matches[1] == 'True' ? true : false;
                 result.evaluation = matches[2];

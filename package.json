@@ -1,16 +1,19 @@
 {
-	"name":	"spamassassin-node-api",
-	"version": "1.0.0",
-	"description":	"A spam blocker with Node + SpamAssassin",
-    "scripts": {
-      "start": "node index.js"
-    },
-	"author": "bombbomb",
-	"license": "ISC",
-	"dependencies": {
-		"express": "*",
-        "forever": "*",
-        "body-parser": "*",
-        "node-uuid": "1.x.x"
-	}
+  "name": "spamassassin-node-api",
+  "version": "1.0.0",
+  "description": "A spam blocker with Node + SpamAssassin",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "bombbomb",
+  "license": "ISC",
+  "dependencies": {
+    "express": "*",
+    "forever": "*",
+    "body-parser": "*",
+    "node-uuid": "1.x.x"
+  },
+  "devDependencies": {
+    "spamc": "0.0.5"
+  }
 }

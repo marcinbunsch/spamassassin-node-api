@@ -11,7 +11,12 @@ app.get('/health-check', function(request, response) {
 });
 
 app.post('/evaluate', function(request, response) {
-    var spamd = new spamdLib('noreply@example.com' /* sender */, 'noreply@example.com' /* receiver */, 'spamassassin' /* host */, 783 /* port */);
+    var spamd = new spamdLib(
+      'noreply@example.com' /* sender */, 
+      'noreply@example.com' /* receiver */, 
+      'localhost' /* host */, 
+      783 /* port */
+    );
 
     var subject = request.body.subject;
     var message = request.body.body;
@@ -41,4 +46,4 @@ function validateRequest(subject, message)
 }
 
 
-app.listen(80);
+app.listen(8080);
